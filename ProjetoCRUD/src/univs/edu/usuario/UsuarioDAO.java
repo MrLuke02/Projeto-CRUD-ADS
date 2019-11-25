@@ -18,15 +18,27 @@ public class UsuarioDAO {
         transacao = sessao.beginTransaction();
         sessao.save(usuario);
         transacao.commit();
-        if(usuario.getIdUsuario() == 0){
-            sessao.save(usuario);
-            JOptionPane.showMessageDialog(null, "Usuario salvo!");
-    }else{
             sessao.update(usuario);
-            JOptionPane.showMessageDialog(null, "Usuario editado!");
-            }
+            JOptionPane.showMessageDialog(null, "Usuario salvo!");
+            
         sessao.close();
     }
+    
+    
+    public void editarUsuario(Usuario usuario){
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        sessao.update(usuario);
+        transacao.commit();
+            sessao.update(usuario);
+            JOptionPane.showMessageDialog(null, "Usuario editado!");
+            
+        sessao.close();
+    }
+    
+    
+    
+    
     public void excluir(Usuario usuario){
         sessao = HibernateUtil.getSessionFactory().openSession();
         transacao = sessao.beginTransaction();
@@ -51,6 +63,15 @@ public class UsuarioDAO {
         transacao = sessao.beginTransaction();
         List<Usuario> usuarios = sessao.createCriteria(Usuario.class).list();
         return usuarios;
+    }
+    
+    public List<Usuario> listarUsuarios(){
+        sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        List<Usuario> usuarios = sessao.createCriteria(Usuario.class).list();
+        sessao.close();
+        return usuarios;
+        
     }
 }
 

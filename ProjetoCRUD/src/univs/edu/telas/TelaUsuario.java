@@ -29,6 +29,11 @@ public class TelaUsuario extends javax.swing.JFrame {
         tfSenha.setText("");
     }
 
+    public void atualizarCampos(){
+        tfLogin.setText(usuario.getLogin());
+        tfSenha.setText(usuario.getSenha());
+        tfNome.setText(usuario.getNomeUsuario());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,6 +98,11 @@ public class TelaUsuario extends javax.swing.JFrame {
         });
 
         jButton2.setText("Pesquisar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Voltar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -190,18 +200,22 @@ public class TelaUsuario extends javax.swing.JFrame {
         if(tfNome.getText().isEmpty() || tfLogin.getText().isEmpty() || tfSenha.getText().isEmpty()){
         JOptionPane.showMessageDialog(null, "Preencha todos os campos!");   
         }else{
-        usuario.setNomeUsuario(tfLogin.getText());
+        usuario.setNomeUsuario(tfNome.getText());
         usuario.setSenha(tfSenha.getText());
         usuario.setLogin(tfLogin.getText());
+        if(usuario.getIdUsuario() != 0){
+        dao.editarUsuario(usuario);    
+        }else{
         dao.salvar(usuario);
         limparCampos();
                 }
+        }
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void tfNomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfNomeMouseClicked
@@ -211,6 +225,12 @@ public class TelaUsuario extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         limparCampos();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ConsultaUsuario consulta = new ConsultaUsuario();
+        consulta.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

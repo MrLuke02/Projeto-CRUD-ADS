@@ -65,13 +65,5 @@ public class UsuarioDAO {
         return usuarios;
     }
     
-    public List<Usuario> listarUsuarios(){
-        sessao = HibernateUtil.getSessionFactory().openSession();
-        transacao = sessao.beginTransaction();
-        List<Usuario> usuarios = sessao.createCriteria(Usuario.class).list();
-        sessao.close();
-        return usuarios;
-        
-    }
 }
 

@@ -27,7 +27,7 @@ public class ConsultaUsuario extends javax.swing.JFrame {
     }
     
     public void AtualizarTabela(){
-        UsuarioTableModel tm = new UsuarioTableModel(dao.listarUsuarios());
+        UsuarioTableModel tm = new UsuarioTableModel(dao.pesquisar());
         tabelaUsuario.setModel(tm);
     } 
 
@@ -87,44 +87,42 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 5, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(77, 77, 77)
+                        .addGap(92, 92, 92)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap())
+                        .addGap(103, 103, 103)
+                        .addComponent(jButton1))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addGap(14, 14, 14))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2)
+                        .addComponent(jButton3))
+                    .addComponent(jButton1)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int linha = tabelaUsuario.getSelectedColumn();
+        int linha = tabelaUsuario.getSelectedRow();
         if(linha == -1){
             JOptionPane.showMessageDialog(null, "Selecione uma linha!");
         }else if(JOptionPane.showConfirmDialog(null, "Deseja realmente deletar esse usuário?", "Excluir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             usuario = dao.pesquisar((int)tabelaUsuario.getValueAt(linha, 0));
             dao.excluir(usuario);
-            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
             AtualizarTabela();
+            JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -104,10 +104,9 @@ public class ConsultaUsuario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
-                        .addComponent(jButton3))
-                    .addComponent(jButton1)))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -128,7 +127,7 @@ public class ConsultaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int linha = tabelaUsuario.getSelectedColumn();
+        int linha = tabelaUsuario.getSelectedRow();
         if(linha == -1){
             JOptionPane.showMessageDialog(null, "Selecione uma linha!");
         }else{
